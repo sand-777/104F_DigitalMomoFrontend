@@ -1,10 +1,16 @@
 
 import './App.css'
-import {  RouterProvider } from 'react-router-dom'
+import {  Route, BrowserRouter,Routes } from 'react-router-dom'
 
-import router from './routes'
-import Navbar from './globals/components/navbar/Navbar'
+
+
 import Footer from './globals/components/footer/Footer'
+import Navbar from './globals/components/navbar/Navbar'
+import { Provider } from 'react-redux'
+import store from './store/store'
+import Cart from './pages/cart/Cart'
+import Login from './pages/auth/login/Login'
+import Home from './pages/home/Home'
 
 
 function App() {
@@ -12,10 +18,20 @@ function App() {
 
   return (
    <>
-   <Navbar/>
+   <Provider store= {store}>
+   {/* <Navbar/>
      <RouterProvider router = {router}/>
-    
-     <Footer/>
+     <Footer/>     */}
+     <BrowserRouter>
+     <Navbar/>
+     <Routes>
+      <Route path='/' element={<Home/>}></Route>
+      <Route path='/login' element={<Login/>}></Route>
+      <Route path='/cart' element={<Cart/>}></Route>
+      </Routes>
+      <Footer/>
+      </BrowserRouter>
+   </Provider>
     
    </>
   )
